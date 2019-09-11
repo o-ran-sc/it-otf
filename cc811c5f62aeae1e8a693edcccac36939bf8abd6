@@ -46,6 +46,29 @@
       "revId": "cc811c5f62aeae1e8a693edcccac36939bf8abd6",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c7a751a_a08020f3",
+        "filename": "INFO.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000246
+      },
+      "writtenOn": "2019-09-11T02:13:45Z",
+      "side": 1,
+      "message": "Should also have the ptl listed in the committer list.\nSomething like     - \u003c\u003c: *onap_sdnc_ptl",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 3
+      },
+      "revId": "cc811c5f62aeae1e8a693edcccac36939bf8abd6",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
     }
   ]
 }
