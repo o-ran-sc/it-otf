@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (7fb4df added updated code for test env)
 FROM node:8.16-alpine
 
 ENV ENV=development
@@ -29,3 +30,5 @@ RUN npm install --unsafe-perm
 RUN npm run-script build
 
 ENTRYPOINT [ "npm", "start" ]
+=======
+>>>>>>> CHANGE (c83081 added sharding code)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (7fb4df added updated code for test env)
 {
   "host": "0.0.0.0",
   "path": "otf/api/",
@@ -50,3 +51,5 @@
     }
   }
 }
+=======
+>>>>>>> CHANGE (c83081 added sharding code)
