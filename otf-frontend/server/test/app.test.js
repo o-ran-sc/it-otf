@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (7fb4df added updated code for test env)
 const assert = require('assert');
 const rp = require('request-promise');
 const url = require('url');
@@ -53,3 +54,5 @@ describe('Feathers application tests', () => {
 		});
 	});
 });
+=======
+>>>>>>> CHANGE (c83081 added sharding code)

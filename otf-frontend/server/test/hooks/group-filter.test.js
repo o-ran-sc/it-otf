@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (7fb4df added updated code for test env)
 const assert = require('assert');
 const feathers = require('@feathersjs/feathers');
 const groupFilter = require('../../src/hooks/group-filter');
@@ -23,3 +24,5 @@ describe('\'groupFilter\' hook', () => {
 		assert.deepEqual(result, { id: 'test' });
 	});
 });
+=======
+>>>>>>> CHANGE (c83081 added sharding code)

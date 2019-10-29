@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (7fb4df added updated code for test env)
 /*  Copyright (c) 2019 AT&T Intellectual Property.                             #
 #                                                                              #
 #   Licensed under the Apache License, Version 2.0 (the "License");            #
@@ -81,3 +82,5 @@ function iterate(obj, stack) {
 		}
 	}
 }
+=======
+>>>>>>> CHANGE (c83081 added sharding code)

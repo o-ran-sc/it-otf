@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (7fb4df added updated code for test env)
 {
   "name": "otf-frontend",
   "description": "This module is made up of the OTF User Interface, and a Node.js server to serve it.",
@@ -166,3 +167,5 @@
     "typescript": "~2.8.0"
   }
 }
+=======
+>>>>>>> CHANGE (c83081 added sharding code)
