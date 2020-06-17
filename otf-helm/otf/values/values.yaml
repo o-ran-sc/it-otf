@@ -1,0 +1,65 @@
+# Default values for otf.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+shared: &shared
+  httpProxy: "!"
+  httpsProxy: "!"
+  namespace: dev
+  proxyUrl: "!"
+  proxyPort: "!"
+  nodeApi:
+    url: "!"
+    host: "!"
+
+global:
+
+  mongodb: &mongodb
+    <<: *shared
+    appName: mongodb
+    version: 0.0.1
+    replicas : 1
+    mongodbRootPassword: "!"
+    mongodbUsername: "!"
+    mongodbPassword: "!"
+    mongodbDatabase: otf
+    port: "!"
+    targetPort: "!"
+    image:
+      registry: docker.io
+      repository: bitnami/mongodb
+      tag: 4.2.6-debian-10-r18
+      pullPolicy: IfNotPresent
+      debug: false
+    resources:
+      limits:
+        memory: "500Mi"
+        cpu: "1"
+      requests:
+        memory: "256Mi"
+        cpu: "1"
+
+  mysqldb: &mysqldb
+    <<: *shared
+    appName: mysqldb
+    version: 0.0.1
+    replicas : 1
+    mysqlRootPassword: "!"
+    mysqlUser: "!"
+    mysqlPassword: "!"
+    mysqlDatabase: otf_camunda
+    port: 3306
+    targetPort: 8306
+    image:
+      registry: docker.io
+      image: mysql
+      tag: 5.7.26
+      pullPolicy: IfNotPresent
+      debug: false
+    resources:
+      limits:
+        memory: "500Mi"
+        cpu: "1"
+      requests:
+        memory: "256Mi"
+        cpu: "1"
