@@ -1,0 +1,11 @@
+---
+distribution_type: container
+container_release_tag: 0.0.1
+container_pull_registry: nexus3.o-ran-sc.org:10004
+container_push_registry: nexus3.o-ran-sc.org:10002
+project: it/otf
+ref: Id85e924c00c43f016426780773974fd643d7fb70
+containers:
+    - name: it-otf-a1-sdnc-vth
+      version: 0.0.1
+
