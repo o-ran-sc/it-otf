@@ -1,6 +1,7 @@
 appName: otf-frontend
 version: 0.0.4-SNAPSHOT
-image: otf-frontend
+pullSecret: "docker.secret"
+image: image-registry
 namespace: 
 nodePort: 32524
 replicas:
@@ -33,19 +34,19 @@ camundaApi:
     CAMUNDAAPI_URL: "https://localhost:31313/"
 mongo:
   prod:
-    MONGO_BASEURL: "localhost:18720,localhost:18720,localhost:18720/"
+    MONGO_BASEURL: "localhost:27017/"
     MONGO_DBOTF: "otf"
-    MONGO_REPLICASET: "otf-rs-prod2"
+    MONGO_REPLICASET: "rs0"
   st:
-    MONGO_BASEURL: "localhost:27017,localhost:27017,localhost:27017/"
+    MONGO_BASEURL: "localhost:27017"
     MONGO_DBOTF: "otf_st"
-    MONGO_REPLICASET: "mongoOTF"
+    MONGO_REPLICASET: "rs0"
   dev:
-    MONGO_BASEURL: "localhost:27017,localhost:27017,localhost:27017/"
+    MONGO_BASEURL: "localhost:27017"
     MONGO_DBOTF: "otf"
-    MONGO_REPLICASET: "mongoOTF"
-  username: ""
-  password: ""
+    MONGO_REPLICASET: "rs0"
+  username: "!"
+  password: "!"
 otf:
   OTF_EMAIL: "OTF_NO-REPLY@localhost.com"
   OTF_URL:
@@ -57,3 +58,13 @@ sharedSecret: otf-aaf-credential-generator
 sharedCert: otf-cert-secret-builder
 
 healthEndpoint: otf/api/health/v1
+
+one_click:
+  enabled: false
+  mongo:
+    replicaset: rs0
+    database: otf
+    secret_name: mongo-mongodb
+    ip: 10.0.51.84:27017
+    username: "!"
+    password: "!"

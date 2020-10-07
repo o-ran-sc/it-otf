@@ -1,12 +1,13 @@
 appName: ric-test-head
 env: dev
 version: 0.0.1-SNAPSHOT
-image: ric-test-head:0.0.1-SNAPSHOT
-namespace: org-oran-otf
+image: image-registry
+namespace:
 nodePort: 32323
 replicas: 1
 health : /otf/vth/oran/v1/health
 sharedCert: otf-cert-secret-builder
+pullSecret: "docker.secret"
 pvc:
   dev: org-oran-otf-dev-logs-pv
   prod: org-oran-otf-prod-logs-pv

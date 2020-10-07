@@ -1,7 +1,8 @@
-appName: otf-service-api
-version: 0.0.1-SNAPSHOT
-image: otf-service-api:0.0.1-SNAPSHOT
-namespace: org-oran-otf
+appName: otf-oran-service-api
+version: latest
+pullSecret: "docker.secret"
+image: image-registry
+namespace: 
 nodePort: 32303
 replicas:
   dev: 2
@@ -12,8 +13,12 @@ env: dev
 otf:
   mongo:
     dev:
-      host: localhost:27017,localhost:27017,localhost:27017
-      replicaSet: mongoOTF
+      #host: zlt17213.vci.att.com:27017,zlt17214.vci.att.com:27017,zlt17215.vci.att.com:27017
+      #replicaSet: mongoOTF
+      #database: otf
+#      host: 10.0.99.11:27017
+      host: 10.0.211.13:27017
+      replicaSet: rs0
       database: otf
     st:
       host: localhost:27017,localhost:27017,localhost:27017
@@ -86,4 +91,12 @@ pvc:
   dev: org-oran-otf-dev-logs-pv
   prod: org-oran-otf-prod-logs-pv
 
-
+one_click:
+  enabled: false
+  mongo:
+    replicaset: "!"
+    database: "!"
+    secret_name: mongo-mongodb
+    ip: 10.0.51.84:27017
+    username: "!"
+    password: "!"

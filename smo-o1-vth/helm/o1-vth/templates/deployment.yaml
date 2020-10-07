@@ -26,6 +26,10 @@ spec:
         app: {{ .Values.appName}}
         version: {{.Values.version}}
     spec:
+      {{ if .Values.pullSecret }}
+      imagePullSecrets:
+        - name: {{ .Values.pullSecret }}
+      {{ end }}
       serviceAccount: default
       volumes:
       - name: {{ .Values.appName}}-cert-volume
@@ -44,7 +48,7 @@ spec:
         ports:
         - name: http
           containerPort: 5000
-          nodePort: {{.Values.nodePort}}
+          # nodePort: {{.Values.nodePort}}
           protocol: TCP
         env:
         - name: NAMESPACE
@@ -59,16 +63,16 @@ spec:
           value: {{ .Values.HTTPS}}
         - name: BASE_URL
           value: {{ .Values.BASE_URL}}
-        - name: USER
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.appName}}
-              key: username
-        - name: PW
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.appName}}
-              key: password
+        # - name: USER
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ .Values.appName}}
+        #       key: username
+        # - name: PW
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ .Values.appName}}
+        #       key: password
         volumeMounts:
         - name: {{.Values.appName}}-cert-volume
           mountPath: /opt/cert

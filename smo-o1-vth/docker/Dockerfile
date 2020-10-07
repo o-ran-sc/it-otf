@@ -18,10 +18,10 @@ FROM python:3.7.4
 RUN python --version
 
 ADD pip-requirements.txt pip-requirements.txt
-ADD o1_vth.py o1_vth.py
+ADD smo_o1_vth.py smo_o1_vth.py
 ADD config.ini config.ini
 
 RUN mkdir -p /otf/logs
 
 RUN python -m pip install -r pip-requirements.txt
-ENTRYPOINT ["python", "o1_vth.py"]
+ENTRYPOINT ["python", "smo_o1_vth.py"]

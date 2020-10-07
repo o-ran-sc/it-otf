@@ -1,0 +1,8 @@
+#namespace: &namespace db
+
+#mysql:
+#  namespace: *namespace
+
+#mongodb:
+#  namespace: *namespace
+

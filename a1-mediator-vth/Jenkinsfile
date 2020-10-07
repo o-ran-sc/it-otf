@@ -18,9 +18,9 @@
 properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
         [$class: 'hudson.model.StringParameterDefinition', name: 'PHASE', defaultValue: "BUILD"],
         [$class: 'hudson.model.StringParameterDefinition', name: 'ENV', defaultValue: "dev"],
-        [$class: 'hudson.model.StringParameterDefinition', name: 'MECHID', defaultValue: "id_otf_dev"],
+        [$class: 'hudson.model.StringParameterDefinition', name: 'MECHID', defaultValue: "m13591_otf_dev"],
         [$class: 'hudson.model.StringParameterDefinition', name: 'KUBE_CONFIG', defaultValue: "kubeConfig-dev"],
-        [$class: 'hudson.model.StringParameterDefinition', name: 'TILLER_NAMESPACE', defaultValue: "registry.hub.docker.io"]
+        [$class: 'hudson.model.StringParameterDefinition', name: 'TILLER_NAMESPACE', defaultValue: "com-att-ecomp-otf-dev"]
 ]]])
 
 
@@ -35,8 +35,8 @@ node("docker"){
 
 	ARTIFACT_ID="a1-mediator-vth";
 	VERSION="0.0.1-SNAPSHOT";
-	NAMESPACE="org-oran-otf"
-	DOCKER_REGISTRY="registry.hub.docker.io"
+	NAMESPACE="com.att.ecomp.otf" //TODO change back to org-otf-oran when done testing
+	DOCKER_REGISTRY="dockercentral.it.att.com:5100"
 
   if( ENV.equalsIgnoreCase("dev") ){
     IMAGE_NAME=DOCKER_REGISTRY + "/" + NAMESPACE + ".dev" + "/" + ARTIFACT_ID +  ":" + VERSION
@@ -64,15 +64,14 @@ node("docker"){
 			stage 'Publish Artifact'
 
 				withCredentials([usernamePassword(credentialsId: MECHID, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-					dir("docker") {
-						echo "Artifact: " + IMAGE_NAME
 
-						sh """
-							docker login $DOCKER_REGISTRY --username $USERNAME --password $PASSWORD
-							docker build -t $IMAGE_NAME .
-							docker push $IMAGE_NAME
-						"""
-					}
+				echo "Artifact: " + IMAGE_NAME
+
+				sh """
+					docker login $DOCKER_REGISTRY --username $USERNAME --password $PASSWORD
+					docker build -t $IMAGE_NAME .
+					docker push $IMAGE_NAME
+				"""
 				}
 
 		}

@@ -25,7 +25,7 @@ otf:
       username: ${OTF_CAMUNDA_DB_USERNAME}
       password: ${OTF_CAMUNDA_DB_PASSWORD}
   cadi:
-    enabled: true
+    enabled: false
     aaf-mech-id: ${AAF_ID}
     aaf-mech-password: ${AAF_MECH_PASSWORD}
     aaf-perm-type: ${AAF_PERM_TYPE}
@@ -51,10 +51,10 @@ otf:
     password: ${OTF_MONGO_PASSWORD}
     replica-set: ${OTF_MONGO_REPLICASET}
     database: ${OTF_MONGO_DATABASE}
-  ssl:
-    key-store-type: 'PKCS12'
-    keystore-path: ${OTF_CERT_PATH}
-    keystore-password: ${OTF_CERT_PASS}
+  #ssl:
+  #  key-store-type: 'PKCS12'
+  #  keystore-path: ${OTF_CERT_PATH}
+  #  keystore-password: ${OTF_CERT_PASS}
 
 #https://stackoverflow.com/questions/50387638/spring-boot-jersey-type-filter-bad-request-400-for-service-consumes-multipar/50423639#50423639
 spring.jersey.filter.order: -100000
@@ -64,11 +64,11 @@ server:
   port.http: 8000
   tomcat.max-threads: 800
 #  ssl:
-    key-store-type: 'PKCS12'
-    key-store: ${OTF_CERT_PATH}
-    key-store-password: ${OTF_CERT_PASS}
+#    key-store-type: 'PKCS12'
+#    key-store: ${OTF_CERT_PATH}
+#    key-store-password: ${OTF_CERT_PASS}
 security:
-  https-only: true
+  https-only: false
   require-ssl: false
   server.port: 8443
   server.port.http: 8080

@@ -1,18 +1,20 @@
 appName: dmaap-vth
 env: dev
 version: 0.0.1-SNAPSHOT
-image: dmaap-vth:0.0.1-SNAPSHOT
-namespace: org-oran-otf
-nodePort: 32324
+image: image-registry
+namespace:
+nodePort: 32322
 replicas: 1
 health : /otf/vth/oran/dmaap/v1/health
 sharedCert: otf-cert-secret-builder
+pullSecret: "docker.secret"
 pvc:
   dev: org-oran-otf-dev-logs-pv
   prod: org-oran-otf-prod-logs-pv
-HTTP: "proxy address here if there is"
-HTTPS: "proxy address here if there is"
-BASE_URL: "base dmaap address here"
+HTTP: 
+HTTPS: 
+BASE_URL: https://ueb01bodc.it.att.com:3905/events
 credentials:
   username: "!"
   password: "!"
+##TODO file needs to be change for oran instead of att
