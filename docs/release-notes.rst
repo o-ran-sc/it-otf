@@ -165,12 +165,10 @@ smo-o1-vth:
 
 a1-policy-manager-vth:
     - Used to communicate with A1 policy management service api
-    - Built according to: https://docs.o-ran-sc.org/projects/o-ran-sc-nonrtric/en/latest/policy-agent-api.html#policy-agent-api
     - Has all functionality that is available in the above link. The vth will require the action and method necessary information e.g. query values and json data and forward the request to the service
 
 a1-sdnc-vth:
     - Used to communicate with SDNC A1 Controller api
-    - built according to: https://docs.o-ran-sc.org/projects/o-ran-sc-nonrtric/en/latest/sdnc-a1-controller-api.html
     - Has all functionality that is available in the above link. The vth will require the action and method necessary information e.g. query values and json data and forward the request to the service
 
 Instructions on how to build and run these applications can be found in the otf-installation.txt file located in the it/otf repository.

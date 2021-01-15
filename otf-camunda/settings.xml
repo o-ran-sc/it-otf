@@ -204,7 +204,6 @@
   </profiles>
 
   <activeProfiles>
-    <activeProfile>default</activeProfile>
     <activeProfile>openecomp-staging</activeProfile>
     <activeProfile>openecomp-public</activeProfile>
     <activeProfile>openecomp-release</activeProfile>
