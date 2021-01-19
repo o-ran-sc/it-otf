@@ -1,0 +1,8 @@
+mongo-ip: &mongoIp  10.0.248.46:27017/
+mongo-secret-name: &mongoSecret one-click-dbs-mongodb
+
+otf-robot-test-head:
+  one_click:
+    mongo:
+      ip: *mongoIp
+      secret_name: *mongoSecret

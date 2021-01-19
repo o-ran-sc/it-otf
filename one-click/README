@@ -1,0 +1,62 @@
+**NOTE: 
+** Database must be initialized before the cores and VTHs are installed, docker images have to be build, and individual charts have to be updated to pull the correct image.
+** If using one-click, you need to build or update the helm dependencies after updating the individual charts that should now point to correct docker images. Oneclick uses
+**    anchors and pointers in its yaml, so values need to be updated in the file, do not pass values in the command line as it will ignore those values.
+
+Prerequisites:
+- Kubernetes
+- Helm 3.0
+- Docker Images
+
+Useful k8 commands:
+  view ports: kubectl get svc -n [namespace]
+  view secrets: kubectl get secrets -n [namespace]
+  view pvc: kubectl get pvc -n [namespace]
+
+usefule helm commands:
+  dependency build: helm depenency build
+  dependency update: helm depenency udpate
+  install charts: helm install [chart_name] [path_to_chart] -n [namespace]
+  uninstall charts: helm uninstall [chart_name] -n [namespace]
+  view charts: helm ls -n [namespace]
+
+
+1. This step is to install otf databases: mysql and mongodb
+
+	NOTE: each install of dbs requires dbs to not have pvcs set, if they exist delete them on every install. If primary starts failing, uninstall and remove pvc and reinstall
+	a) helm install one-click-dbs -n [namespace] . (dir: otf-oran/one-click/one-click-dbs)
+  
+2. This step is to install otf-core componenets: otf-service-api,otf-camunda, and otf-frontend
+
+	a) modify one-click-core values.yaml (otf-oran/one-click/one-click-core/values.yaml) with correct secret name and ip from the previous step. Fill in otf-service-api and otf-camunda ip adresses.
+	NOTE:  format is-> mongo-ip=X.X.X.X:27017 mysql-ip=X.X.X.X:3306/otf_camunda ips are the cluster ports
+  NOTE: format is-> otf-url: http://X.X.X.X:80
+                    camunda-url: http://X.X.X.X:8443/
+                    service-api-url: http://X.X.X.X:8443/otf/api/
+                    camunda-url-no-port: http://X.X.X.X
+	
+	b) fill in the rest of the values.yaml accordingly (ie, camunda-url,&svc-url,etc)
+
+	c) helm install otf-core -n [namespace] . (dir: otf-oran/one-click/one-click-core)
+  
+3. This step is to run otf-vths if desired (dir: otf-oran/one-click/one-click-vths). This step will deploy ALL of OTF's VTHS so if you are only deploying specfic ones, you should skip this step.
+
+	a) robot vths needs a mongo connections so you will have to update the values.yaml (otf-oran/one-click/one-click-vths/values.yaml) with the approiate IP and mongo secret name from step one. format is mongo-ip=X.X.X.X:27017/
+
+	b) helm install otf-vths -n [namespace] . (dir: otf-oran/one-click/one-click-vths)
+	 
+
+SELF-CHECK **MORE UPDATES COMING**
+	1) kubectl get pods -n [namespace] *make sure all pods are running with no errors*
+
+**COMMONLY KNOWN ERRORS/WORKAROUNDS**
+1) Later verisons of chrome might have an issue where users might get stuck on the login page when trying to login.
+  WORKAROUND:
+    - use firefox
+    - if you have to use chrome, go to your chrome brower and paste chrome://flags/#cookies-without-same-site-must-be-secure on the URL section and disable cookies must be secure flag.
+
+  
+  ***NOTES***
+  - defaut username and password-> otfuser@email.com:password (use this account to managed other users via user managment tab. You can change password via the mongo database)
+  - You have to be in a group before you can execute any workflows or add anything VTHs.(Test def, instance, execution are saved to the group that executed it)
+  - In values.
