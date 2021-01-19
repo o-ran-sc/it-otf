@@ -1,0 +1,65 @@
+mongo-ip: &mongoIp 127.0.0.1:27017
+mongo-secret-name: &mongoSecret one-click-dbs-mongodb
+mysql-ip: &mysqlIp 127.0.0.1:3306/otf_camunda
+mysql-secret-name: &mysqlSecret mysql
+otf-url: &otfUrl http://127.0.0.1:80
+camunda-url: &camundaUrl http://127.0.0.1:8443/
+service-api-url: &svcUrl http://127.0.0.1:8443/otf/api/
+camunda-url-no-port: &camundaUrlNoPort http://127.0.0.1
+camunda-port: &camundaPort 8443
+
+otf-oran-service-api:
+  one_click:
+    mongo:
+      ip: *mongoIp
+      secret_name: *mongoSecret
+  otf:
+    camunda:
+      dev:
+        host: *camundaUrlNoPort
+        port: *camundaPort
+      st:
+        host: *camundaUrlNoPort
+        port: *camundaPort
+      prod:
+        host: *camundaUrlNoPort
+        port: *camundaPort
+      prod_dr:
+        host: *camundaUrlNoPort
+        port: *camundaPort
+otf-camunda:
+  one_click:
+    mongo:
+      ip: *mongoIp
+      secret_name: *mongoSecret
+    mysql:
+      ip: *mysqlIp
+      secret_name: *mysqlSecret
+otf-frontend:
+  one_click:
+    mongo:
+      ip: *mongoIp
+      secret_name: *mongoSecret
+  otf:
+    OTF_URL:
+      dev: *otfUrl
+      st: *otfUrl
+      prod: *otfUrl
+  serviceApi:
+    prod:
+     SERVICEAPI_URL: *svcUrl
+    prod_dr:
+      SERVICEAPI_URL: *svcUrl
+    st:
+      SERVICEAPI_URL: *svcUrl
+    dev:
+      SERVICEAPI_URL: *svcUrl
+  camundaApi:
+    prod:
+      CAMUNDAAPI_URL: *camundaUrl
+    prod_dr:
+      CAMUNDAAPI_URL: *camundaUrl
+    st:
+      CAMUNDAAPI_URL: *camundaUrl
+    dev:
+      CAMUNDAAPI_URL: *camundaUrl
