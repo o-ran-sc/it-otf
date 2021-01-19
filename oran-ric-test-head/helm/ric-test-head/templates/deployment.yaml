@@ -26,6 +26,10 @@ spec:
         app: {{ .Values.appName}}
         version: {{.Values.version}}
     spec:
+      {{ if .Values.pullSecret }}
+      imagePullSecrets:
+        - name: {{ .Values.pullSecret }}
+      {{ end }}
       serviceAccount: default
       volumes:
       - name: {{ .Values.appName}}-cert-volume
@@ -40,12 +44,12 @@ spec:
       {{ if or (eq .Values.env "st") (eq .Values.env "prod-dr")}}
       {{else}}
       - name: logging-pvc
-        persistentVolumeClaim:
-          {{if eq .Values.env "prod"}}
-          claimName: {{ .Values.pvc.prod | quote }}
-          {{ else }}
-          claimName: {{ .Values.pvc.dev | quote }}
-          {{ end }}
+        # persistentVolumeClaim:
+        #   {{if eq .Values.env "prod"}}
+        #   claimName: {{ .Values.pvc.prod | quote }}
+        #   {{ else }}
+        #   claimName: {{ .Values.pvc.dev | quote }}
+        #   {{ end }}
       {{end}}
       containers:
       - name: {{ .Values.appName}}
@@ -54,7 +58,7 @@ spec:
         ports:
         - name: http
           containerPort: 5000
-          nodePort: {{.Values.nodePort}}
+          # nodePort: {{.Values.nodePort}}
           protocol: TCP
         {{ if eq .Values.env "st"}}
         resources:
