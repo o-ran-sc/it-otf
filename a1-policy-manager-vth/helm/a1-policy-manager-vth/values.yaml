@@ -7,6 +7,7 @@ nodePort: 32330
 replicas: 1
 health : /otf/vth/oran/a1/v1/health
 sharedCert: otf-cert-secret-builder
+#pullSecret: ""
 pvc:
   dev: org-oran-otf-dev-logs-pv
   prod: org-oran-otf-prod-logs-pv
@@ -19,5 +20,5 @@ proxy:
   http: 
   https: 
 api:
-  base_url: http://njcdtl08rg9907.itservices.sbc.com
+  base_url: ""
   port: 3000

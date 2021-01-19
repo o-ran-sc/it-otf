@@ -26,6 +26,7 @@ import { MatSnackBarModule, MatIconModule} from '@angular/material';
     MatIconModule
   ],
   declarations: [AlertSnackbarComponent],
+  exports: [AlertSnackbarComponent],
   entryComponents: [AlertSnackbarComponent]
 })
 export class AlertSnackbarModule { }
