@@ -7,12 +7,12 @@ metadata:
     app: {{ .Values.appName }}
     version: {{ .Values.version}}
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: https
     port: 8443
     protocol: TCP
-    nodePort: {{ .Values.nodePort}}
+#    nodePort: {{ .Values.nodePort}}
   selector:
     app: {{ .Values.appName }}
     version: {{ .Values.version}}

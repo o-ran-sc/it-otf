@@ -26,6 +26,10 @@ spec:
         app: {{ .Values.appName}}
         version: {{.Values.version}}
     spec:
+      {{ if .Values.pullSecret }}
+      imagePullSecrets:
+        - name: {{ .Values.pullSecret }}
+      {{ end }}
       serviceAccount: default
       volumes:
       - name: {{ .Values.appName}}-cert-volume
@@ -40,12 +44,12 @@ spec:
       {{ if or (eq .Values.env "st") (eq .Values.env "prod-dr")}}
       {{else}}
       - name: logging-pvc
-        persistentVolumeClaim:
-          {{if eq .Values.env "prod"}}
-          claimName: {{ .Values.pvc.prod | quote }}
-          {{ else }}
-          claimName: {{ .Values.pvc.dev | quote }}
-          {{ end }}
+        # persistentVolumeClaim:
+        #   {{if eq .Values.env "prod"}}
+        #   claimName: {{ .Values.pvc.prod | quote }}
+        #   {{ else }}
+        #   claimName: {{ .Values.pvc.dev | quote }}
+        #   {{ end }}
       {{end}}
       containers:
       - name: {{ .Values.appName}}
@@ -54,7 +58,7 @@ spec:
         ports:
         - name: http
           containerPort: 5000
-          nodePort: {{.Values.nodePort}}
+          # nodePort: {{.Values.nodePort}}
           protocol: TCP
         env:
         - name: NAMESPACE
@@ -64,41 +68,63 @@ spec:
         - name: APP_VERSION
           value: {{.Values.version}}
         - name: OTF_MONGO_HOSTS
-          {{ if or (eq .Values.env "prod") (eq .Values.env "prod-dr")}}
-          value: {{ .Values.mongo.prod.OTF_MONGO_HOSTS | quote}}
-          {{ else if eq .Values.env "st" }}
-          value: {{ .Values.mongo.st.OTF_MONGO_HOSTS | quote}}
-          {{ else }}
-          value: {{ .Values.mongo.dev.OTF_MONGO_HOSTS | quote}}
-          {{ end }}
+          value: {{ .Values.one_click.mongo.ip | quote }}
+          # {{ if or (eq .Values.env "prod") (eq .Values.env "prod-dr")}}
+          # value: {{ .Values.mongo.prod.OTF_MONGO_HOSTS | quote}}
+          # {{ else if eq .Values.env "st" }}
+          # value: {{ .Values.mongo.st.OTF_MONGO_HOSTS | quote}}
+          # {{ else }}
+          # value: {{ .Values.mongo.dev.OTF_MONGO_HOSTS | quote}}
+          # {{ end }}
         - name: OTF_MONGO_DATABASE
-          {{ if or (eq .Values.env "prod") (eq .Values.env "prod-dr")}}
-          value: {{ .Values.mongo.prod.OTF_MONGO_DBOTF | quote }}
-          {{ else if eq .Values.env "st" }}
-          value: {{ .Values.mongo.st.OTF_MONGO_DBOTF | quote }}
-          {{ else }}
-          value: {{ .Values.mongo.dev.OTF_MONGO_DBOTF | quote }}
-          {{ end }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.one_click.mongo.secret_name}}
+              key: mongodb-database
+              optional: false
+          # {{ if or (eq .Values.env "prod") (eq .Values.env "prod-dr")}}
+          # value: {{ .Values.mongo.prod.OTF_MONGO_DBOTF | quote }}
+          # {{ else if eq .Values.env "st" }}
+          # value: {{ .Values.mongo.st.OTF_MONGO_DBOTF | quote }}
+          # {{ else }}
+          # value: {{ .Values.mongo.dev.OTF_MONGO_DBOTF | quote }}
+          # {{ end }}
         - name: OTF_MONGO_REPLICASET
-          {{ if or (eq .Values.env "prod") (eq .Values.env "prod-dr")}}
-          value: {{ .Values.mongo.prod.OTF_MONGO_REPLICASET | quote }}
-          {{ else if eq .Values.env "st" }}
-          value: {{ .Values.mongo.st.OTF_MONGO_REPLICASET | quote }}          
-          {{ else }}
-          value: {{ .Values.mongo.dev.OTF_MONGO_REPLICASET | quote }}
-          {{ end }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.one_click.mongo.secret_name}}
+              key: mongodb-replicaSet
+              optional: false
+          # {{ if or (eq .Values.env "prod") (eq .Values.env "prod-dr")}}
+          # value: {{ .Values.mongo.prod.OTF_MONGO_REPLICASET | quote }}
+          # {{ else if eq .Values.env "st" }}
+          # value: {{ .Values.mongo.st.OTF_MONGO_REPLICASET | quote }}          
+          # {{ else }}
+          # value: {{ .Values.mongo.dev.OTF_MONGO_REPLICASET | quote }}
+          # {{ end }}
         - name: OTF_MONGO_USERNAME
           valueFrom:
             secretKeyRef:
-              name: {{ .Values.appName}}
-              key: mongo_username
-              optional: true
+              name: {{ .Values.one_click.mongo.secret_name}}
+              key: mongodb-username
+              optional: false
+          # valueFrom:
+          #   secretKeyRef:
+          #     name: {{ .Values.appName}}
+          #     key: mongo_username
+          #     optional: true
         - name: OTF_MONGO_PASSWORD
+          # value: {{ .Values.mongo.password }}
           valueFrom:
             secretKeyRef:
-              name: {{ .Values.appName}}
-              key: mongo_password
-              optional: true
+              name: {{ .Values.one_click.mongo.secret_name}}
+              key: mongodb-password
+              optional: false
+          # valueFrom:
+          #   secretKeyRef:
+          #     name: {{ .Values.appName}}
+          #     key: mongo_password
+          #     optional: true
         - name: APP_SETTINGS
           value: {{ .Values.robot.APP_SETTINGS | quote }} 
         {{ if eq .Values.env "st"}}
@@ -130,22 +156,24 @@ spec:
           httpGet:
             path: {{.Values.health}}
             port: http
-            scheme: HTTPS
+            scheme: HTTP
             httpHeaders:
               - name: X-Custom-Header
                 value: Alive
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
+          #30
           timeoutSeconds: 30
           periodSeconds: 30
         readinessProbe:
           httpGet:
             path: {{.Values.health}}
             port: http
-            scheme: HTTPS
+            scheme: HTTP
             httpHeaders:
               - name: X-Custom-Header
                 value: Ready
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
+          # 30
           timeoutSeconds: 30
           periodSeconds: 30
       restartPolicy: Always

@@ -7,25 +7,58 @@ nodePort: 32224
 replicas: 1
 health : /otf/vth/robot/v1/health
 sharedCert: otf-cert-secret-builder
+#pullSecret: ""
 robot:
   APP_SETTINGS: "app.configuration.DevelopmentConfiguration"
 pvc:
   dev: org-oran-otf-dev-logs-pv
   prod: org-oran-otf-prod-logs-pv
+
+one_click:
+  enabled: false
+  mongo:
+    replicaset: rs0
+    database: otf
+    secret_name: mongo-mongodb
+    ip: 10.0.51.84:27017
+    username: "!"
+    password: "!"
+    
 mongo:
   prod:
-    OTF_MONGO_HOSTS: "localhost:18720,localhost:18720,localhost:18720/"
+    OTF_MONGO_HOSTS: "10.0.136.214:27017/"
     OTF_MONGO_DBOTF: "otf"
-    OTF_MONGO_REPLICASET: "otf-rs-prod2"
+    OTF_MONGO_REPLICASET: "rs0"
   dev:
-    OTF_MONGO_HOSTS: "localhost:27017,localhost:27017,localhost:27017/"
+    OTF_MONGO_HOSTS: "10.0.136.214:27017/"
     OTF_MONGO_DBOTF: "otf"
-    OTF_MONGO_REPLICASET: "mongoOTF"
+    OTF_MONGO_REPLICASET: "rs0"
   st:
-    OTF_MONGO_HOSTS: "localhost:27017,localhost:27017,localhost:27017/"
+    OTF_MONGO_HOSTS: "10.0.136.214:27017/"
     OTF_MONGO_DBOTF: "otf_st"
-    OTF_MONGO_REPLICASET: "mongoOTF"
+    OTF_MONGO_REPLICASET: "rs0"
+  username: "otfuser"
+  password: "Today.123"
 
-  username: ""
-  password: ""
+# mongo:
+#   prod:
+#     OTF_MONGO_HOSTS: "localhost:18720,localhost:18720,localhost:18720/"
+#     OTF_MONGO_DBOTF: "otf"
+#     OTF_MONGO_REPLICASET: "otf-rs-prod2"
+#   dev:
+#     OTF_MONGO_HOSTS: "10.0.136.214:27017/"
+#     #"localhost:27017,localhost:27017,localhost:27017/"
+#     OTF_MONGO_DBOTF: "otf"
+#     OTF_MONGO_REPLICASET: "rs0"
+#     # "mongoOTF"
+#   st:
+#     OTF_MONGO_HOSTS: "localhost:27017,localhost:27017,localhost:27017/"
+#     OTF_MONGO_DBOTF: "otf_st"
+#     OTF_MONGO_REPLICASET: "mongoOTF"
+
+#   username: "otfuser"
+#   # "username"
+#   password: "Today.123"
+#   # "password"
 sharedSecret: otf-aaf-credential-generator
+
