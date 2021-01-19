@@ -1,1 +1,11 @@
 .idea/
+-*.swp
+-**/*.swp
+-*.sw*
+-**/node_modules/*
+-*.pyc
+-__pycache__/
+-*.log
+-.env
+-*.tgz
+-*.lock

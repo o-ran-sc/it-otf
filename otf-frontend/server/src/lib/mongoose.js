@@ -18,7 +18,7 @@ const mongoose = require('mongoose');
 
 module.exports = function (app) {
 	const mongoData = app.get('mongo');
-	const connectionString = 'mongodb://' + mongoData.username + ':' + mongoData.password + '@' + mongoData.baseUrl + mongoData.dbOtf + '?replicaSet=' + mongoData.replicaSet;
+	const connectionString = 'mongodb://' + mongoData.username + ':' + mongoData.password + '@' + mongoData.baseUrl + '/' + mongoData.dbOtf + '?replicaSet=' + mongoData.replicaSet;
 
 	mongoose.connect(connectionString, { useNewUrlParser: true }).then(null, error => {
 		console.log('caught', error.message);

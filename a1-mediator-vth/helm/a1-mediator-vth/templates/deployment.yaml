@@ -26,6 +26,10 @@ spec:
         app: {{ .Values.appName}}
         version: {{.Values.version}}
     spec:
+      {{ if .Values.pullSecret }}
+      imagePullSecrets:
+        - name: {{ .Values.pullSecret }}
+      {{ end }}    
       serviceAccount: default
       volumes:
       - name: {{ .Values.appName}}-cert-volume
@@ -54,7 +58,7 @@ spec:
         ports:
         - name: http
           containerPort: 5000
-          nodePort: {{.Values.nodePort}}
+#          nodePort: {{.Values.nodePort}}
           protocol: TCP
 #        {{ if eq .Values.env "st"}} TODO UNCOMMENT FOR ORAN?
 #        resources:

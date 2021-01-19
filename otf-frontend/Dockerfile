@@ -18,7 +18,7 @@ ENV ENV=development
 ENV NAMESPACE=namespace
 ENV APP_NAME=otf-frontend
 ENV APP_VERSION=1.0
-ENV OTF_URL=https://loaclhost:32524/
+ENV OTF_URL=https://localhost:32524/
 ENV OTF_EMAIL=email@email.com
 ENV AUTHENTICATION_SECRET=/ytoYB+iD5HUuDLmeqStcoUPwqw=
 ENV SERVICEAPI_URL=https://localhost:32303/otf/api/
@@ -34,11 +34,22 @@ ENV MONGO_REPLICASET=rs0
 ENV MONGO_USERNAME=username
 ENV MONGO_PASSWORD=password
 
+RUN npm config set unsafe-perm true
+RUN npm cache clean --force
+RUN npm config set registry https://registry.npmjs.org/
+RUN node -v
+
 COPY . /home/node
 WORKDIR /home/node
 
 RUN mkdir -p /otf/logs
 
+#RUN npm install webpack
+#RUN npm install webpack webpack-dev-server 
+RUN npm i -g webpack
+RUN npm i -g webpack-dev-server
+RUN npm i -g --unsafe-perm @angular/cli@6.2.9 
+RUN npm install --save-dev @angular-devkit/build-angular
 RUN npm install --unsafe-perm
 RUN npm run-script build
 
