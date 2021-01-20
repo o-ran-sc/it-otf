@@ -4,9 +4,9 @@ project_creation_date: '2019-05-21'
 project_category: ''
 lifecycle_state: 'Incubation'
 project_lead: &it-otf_ptl
-    name: 'Lusheng Ji'
-    email: 'lji@research.att.com'
-    id: 'wrider'
+    name: 'Zhe Huang'
+    email: 'zhehuang@research.att.com'
+    id: 'eefelixwong'
     company: 'AT&T Labs-Research'
     timezone: 'America/New_York'
 primary_contact: *it-otf_ptl
@@ -33,6 +33,11 @@ meetings:
 repositories:
     - 'it/otf'
 committers:
+    - name: 'Zhe Huang'
+      email: 'zhehuang@research.att.com'
+      id: 'eefelixwong'
+      company: 'AT&T Labs-Research'
+      timezone: 'America/New_York'
     - name: 'Eliza Celenti'
       email: 'ec6317@att.com'
       id: 'ec6317'
@@ -61,4 +66,4 @@ committers:
     - <<: *it-otf_ptl
 tsc:
     # yamllint disable-line rule:line-length
-    approval: 'https://wiki.o-ran-sc.org/display/TOC#O-RANSCTechnicalOversightCommittee(TOC)-20190821'
+    approval: 'https://wiki.o-ran-sc.org/display/TOC#O-RANSCTechnicalOversightCommittee(TOC)-20201209'
