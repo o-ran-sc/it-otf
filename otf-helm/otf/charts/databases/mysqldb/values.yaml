@@ -25,9 +25,9 @@ mysqlRootPassword: otf.123
 mysqlIP: ""
 ## Create a database user
 ##
-mysqlUser: otfuser
+mysqlUser: your-mysql-username
 ## Default: random 10 character string
-mysqlPassword: Today.123
+mysqlPassword: your-mysql-password
 
 ## Allow unauthenticated access, uncomment to enable
 ##

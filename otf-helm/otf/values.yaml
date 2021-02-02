@@ -3,14 +3,14 @@
 # Declare variables to be passed into your templates.
 
 shared: &shared
-  httpProxy: http://proxy.conexus.svc.local:3128
-  httpsProxy: http://proxy.conexus.svc.local:3128
-  namespace: db
-  proxyUrl: http://proxy.conexus.svc.local
-  proxyPort: 3128
+  httpProxy: your-http-proxy
+  httpsProxy: your-https-proxy
+  namespace: your-k8-namespace
+  proxyUrl: your-proxy-url-w/o-port
+  proxyPort: your-proxy-port
   nodeApi:
-    url: http://az-otf.dev.att.com
-    host: az-otf.dev.att.com
+    url: http://localhost
+    host: localhost
 
 global:
         
@@ -19,9 +19,9 @@ global:
     appName: mongodb
     version: Camille.2.1
     replicas : 1
-    mongodbRootPassword: otf.123
-    mongodbUsername: otfuser
-    mongodbPassword: Today.123
+    mongodbRootPassword: your-mongo-root-password
+    mongodbUsername: your-mongo-username
+    mongodbPassword: your-mongo-password
     mongodbDatabase: otf
     port: 27017
     targetPort: 27017
@@ -45,8 +45,8 @@ global:
     version: Camille.2.1
     replicas : 1
     mysqlRootPassword: otf.123
-    mysqlUser: otfuser
-    mysqlPassword: Today.123
+    mysqlUser: your-mysql-username
+    mysqlPassword: your-mysql-password
     mysqlDatabase: otf_camunda
     port: 3306
     targetPort: 8306
