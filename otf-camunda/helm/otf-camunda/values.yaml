@@ -22,8 +22,8 @@ otf:
       host: localhost:18720,localhost:18720,localhost:18720
       replicaSet: otf-rs-prod2
       database: otf
-    username: otfuser
-    password: Today.123
+    username: your-mongo-username
+    password: your-mongo-password
   camunda:
     executors_active:
       dev: true
@@ -39,8 +39,8 @@ otf:
         url: localhost:3306/otf_st-camunda
       prod:
         url: localhost:3306/otf-camunda
-      username: otfuser
-      password: Today.123
+      username: your-mysql-username
+      password: your-mysql-password
     router:
       config:
         dev: mysqlRouterConfig-dev.ini

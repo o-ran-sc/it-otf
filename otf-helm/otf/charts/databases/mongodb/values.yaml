@@ -76,8 +76,8 @@ mongodbRootPassword: otf.123
 ## MongoDB custom user and database
 ## ref: https://github.com/bitnami/bitnami-docker-mongodb/blob/master/README.md#creating-a-user-and-database-on-first-run
 ##
-mongodbUsername: otfuser
-mongodbPassword: Today.123
+mongodbUsername: your-mongo-username
+mongodbPassword: your-mongo-password
 mongodbDatabase: otf
 mongodbIP: ""
 
