@@ -177,8 +177,6 @@ spec:
               key: mongodb-username
               optional: false
         - name: OTF_MONGO_PASSWORD
-          #value: otf.123
-          #value: Today.123
           valueFrom:
             secretKeyRef:
               name: {{ .Values.one_click.mongo.secret_name}}

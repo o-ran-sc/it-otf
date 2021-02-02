@@ -37,28 +37,8 @@ mongo:
     OTF_MONGO_HOSTS: "10.0.136.214:27017/"
     OTF_MONGO_DBOTF: "otf_st"
     OTF_MONGO_REPLICASET: "rs0"
-  username: "otfuser"
-  password: "Today.123"
+  username: "your-mongo-username"
+  password: "your-mongo-password"
 
-# mongo:
-#   prod:
-#     OTF_MONGO_HOSTS: "localhost:18720,localhost:18720,localhost:18720/"
-#     OTF_MONGO_DBOTF: "otf"
-#     OTF_MONGO_REPLICASET: "otf-rs-prod2"
-#   dev:
-#     OTF_MONGO_HOSTS: "10.0.136.214:27017/"
-#     #"localhost:27017,localhost:27017,localhost:27017/"
-#     OTF_MONGO_DBOTF: "otf"
-#     OTF_MONGO_REPLICASET: "rs0"
-#     # "mongoOTF"
-#   st:
-#     OTF_MONGO_HOSTS: "localhost:27017,localhost:27017,localhost:27017/"
-#     OTF_MONGO_DBOTF: "otf_st"
-#     OTF_MONGO_REPLICASET: "mongoOTF"
-
-#   username: "otfuser"
-#   # "username"
-#   password: "Today.123"
-#   # "password"
 sharedSecret: otf-aaf-credential-generator
 
