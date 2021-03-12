@@ -1,7 +1,54 @@
-mongo-ip: &mongoIp  10.0.248.46:27017/
+mongo-ip: &mongoIp  one-click-dbs-mongodb.<NAMESPACE>.svc.cluster.local:27017/
 mongo-secret-name: &mongoSecret one-click-dbs-mongodb
+ping-image: &pingImage <ping-vth image> #your ping image repo
+ssh-image: &sshImage <ssh-vth image> #your ssh image repo
+a1-mediator-image: &a1Mediator <a1-med-vth image> # a1 med image repo
+a1-policy-image: &a1Policy <a1-policy-vth image>
+a1-sdnc-image: &a1Sdnc <a1-sdnc-vth image>
+dmaap-image: &dmaap <dmaap-vth image>
+ric-image: &ric <ric-vth image>
+o1-image: &o1 <o1-vth image>
+robot-image: &robot <robot-vth image>
+
+namespace: &nameSpace oran # your namespace
+
+
+otf-ssh-test-head:
+  image: *sshImage
+  namespace: *nameSpace
+
+otf-ping-test-head:
+  image: *pingImage
+  namespace: *nameSpace
+
+a1-mediator-vth:
+  image: *a1Mediator
+  namespace: *nameSpace
+
+a1-policy-manager-vth:
+  image: *a1Policy
+  namespace: *nameSpace
+
+a1-sdnc-vth:
+  image: *a1Sdnc
+  namespace: *nameSpace
+
+dmaap-vth:
+  image: *dmaap
+  namespace: *nameSpace
+
+oran-ric-test-head:
+  image: *ric
+  namespace: *nameSpace
+
+smo-o1-vth:
+  image: *o1
+  namespace: *nameSpace
+
 
 otf-robot-test-head:
+  image: *robot
+  namespace: *nameSpace
   one_click:
     mongo:
       ip: *mongoIp

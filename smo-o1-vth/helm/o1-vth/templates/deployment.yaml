@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.appName}}
@@ -52,11 +52,11 @@ spec:
           protocol: TCP
         env:
         - name: NAMESPACE
-          value: {{.Values.namespace}}
+          value: {{ .Values.namespace}}
         - name: APP_NAME
           value: {{ .Values.appName}}
         - name: APP_VERSION
-          value: {{.Values.version}}
+          value: {{ .Values.version}}
         - name: HTTP
           value: {{ .Values.HTTP}}
         - name: HTTPS

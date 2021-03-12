@@ -46,7 +46,7 @@ dependencies:
   repository: "file://../../otf-ssh-test-head/helm/otf-ssh-test-head/"
 - name: smo-o1-vth
   version: 0.0.1
-  repository: "file://../../smo-o1-vth/helm/smo-o1-vth/"
+  repository: "file://../../smo-o1-vth/helm/o1-vth/"
 - name: otf-robot-test-head
   version: 0.0.5-SNAPSHOT
   repository: "file://../../otf-robot-test-head/helm/otf-robot-test-head/"

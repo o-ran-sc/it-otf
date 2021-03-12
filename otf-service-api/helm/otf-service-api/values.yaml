@@ -1,13 +1,13 @@
 appName: otf-service-api
 version: 0.0.1-SNAPSHOT
 #pullSecret: ""
-image: otf-service-api:0.0.1-SNAPSHOT
-namespace: org-oran-otf
+#image: otf-service-api:0.0.1-SNAPSHOT
+#namespace: org-oran-otf
 nodePort: 32303
 replicas:
-  dev: 2
+  dev: 1
   st: 1
-  prod: 2
+  prod: 1
 env: dev
 # Environment variables for the service api.
 otf:
