@@ -1,14 +1,30 @@
-mongo-ip: &mongoIp 127.0.0.1:27017
+### internal db ip
+mongo-ip: &mongoIp one-click-dbs-mongodb.<NAMESPACE>.svc.cluster.local:27017
+mysql-ip: &mysqlIp one-click-dbs-mysql.<NAMESPACE>.svc.cluster.local:3306/otf_camunda
+#mongo-ip: &mongoIp 10.0.190.153:27017
+#mysql-ip: &mysqlIp 10.0.178.26:3306/otf_camunda
 mongo-secret-name: &mongoSecret one-click-dbs-mongodb
-mysql-ip: &mysqlIp 127.0.0.1:3306/otf_camunda
 mysql-secret-name: &mysqlSecret mysql
-otf-url: &otfUrl http://127.0.0.1:80
-camunda-url: &camundaUrl http://127.0.0.1:8443/
-service-api-url: &svcUrl http://127.0.0.1:8443/otf/api/
-camunda-url-no-port: &camundaUrlNoPort http://127.0.0.1
+frontend-image: &frontendImage FE-image  #Your frontend docker image location
+service-api-image: &serviceApiImage SVC-API image #Your service-api docker image location
+camunda-image: &camundaImage CAMUNDA-image #Your camunda docker image location
+
+###internal urls
+otf-url: &otfUrl http://otf-frontend.<NAMESPACE>.svc.cluster.local:80/ #fe ip address
+camunda-url: &camundaUrl http://otf-camunda.<NAMESPACE>.svc.cluster.local:8443/ #camunda ip address
+service-api-url: &svcUrl http://otf-service-api.<NAMESPACE>.svc.cluster.local:8443/otf/api/ #service api ip address
+camunda-url-no-port: &camundaUrlNoPort http://otf-camunda.<NAMESPACE>.svc.cluster.local #camunda ip address w/o port
 camunda-port: &camundaPort 8443
+#otf-url: &otfUrl http://10.0.5.126:80/ #fe ip address
+#camunda-url: &camundaUrl http://10.0.75.51:8443/ #camunda ip address
+#service-api-url: &svcUrl http://10.0.96.153:8443/otf/api/ #service api ip adress
+#camunda-url-no-port: &camundaUrlNoPort http://10.0.75.51 #camunda ip address w/o port
+
+mechId: &mechId username
+mechIdPassword: &mechIdPassword password
 
 otf-oran-service-api:
+  image: *serviceApiImage
   one_click:
     mongo:
       ip: *mongoIp
@@ -28,6 +44,7 @@ otf-oran-service-api:
         host: *camundaUrlNoPort
         port: *camundaPort
 otf-camunda:
+  image: *camundaImage
   one_click:
     mongo:
       ip: *mongoIp
@@ -36,10 +53,13 @@ otf-camunda:
       ip: *mysqlIp
       secret_name: *mysqlSecret
 otf-frontend:
+  image: *frontendImage
   one_click:
     mongo:
       ip: *mongoIp
       secret_name: *mongoSecret
+    mechId: *mechId
+    mechIdPassword: *mechIdPassword
   otf:
     OTF_URL:
       dev: *otfUrl

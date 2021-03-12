@@ -27,4 +27,4 @@ if __name__ == '__main__':
     #     use_reloader=True,
     #     ssl_context=context)
     # Run without ssl
-	app.run(debug=app.config['DEBUG'], host='0.0.0.0', use_reloader=True, port=5000)
+    app.run(debug=app.config['DEBUG'], host='0.0.0.0', use_reloader=True, port=5000)

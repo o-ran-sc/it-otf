@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.appName}}
@@ -126,17 +126,19 @@ spec:
           value: {{.Values.serviceApi.dev.SERVICEAPI_URIEXECUTETESTINSTANCE | quote}}
           {{ end }}
         - name: SERVICEAPI_AAFID
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.sharedSecret}}
-              key: aaf_id
-              optional: true
+          value: {{.Values.one_click.mechId}}
+#          valueFrom:
+#            secretKeyRef:
+#              name: {{ .Values.sharedSecret}}
+#              key: aaf_id
+#              optional: true
         - name: SERVICEAPI_AAFPASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.sharedSecret}}
-              key: aaf_mech_password
-              optional: true
+          value: {{.Values.one_click.mechIdPassword}}
+#          valueFrom:
+#            secretKeyRef:
+#              name: {{ .Values.sharedSecret}}
+#              key: aaf_mech_password
+#              optional: true
         - name: CAMUNDAAPI_URL
           {{ if eq .Values.env "prod" }}
           value: {{ .Values.camundaApi.prod.CAMUNDAAPI_URL | quote}}
@@ -148,17 +150,19 @@ spec:
           value: {{ .Values.camundaApi.dev.CAMUNDAAPI_URL | quote}}
           {{ end }}
         - name: CAMUNDAAPI_AAFID
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.sharedSecret}}
-              key: aaf_id
-              optional: true
+          value: {{.Values.one_click.mechId}}
+#          valueFrom:
+#            secretKeyRef:
+#              name: {{ .Values.sharedSecret}}
+#              key: aaf_id
+#              optional: true
         - name: CAMUNDAAPI_AAFPASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.sharedSecret}}
-              key: aaf_mech_password
-              optional: true
+          value: {{.Values.one_click.mechIdPassword}}
+#          valueFrom:
+#            secretKeyRef:
+#              name: {{ .Values.sharedSecret}}
+#              key: aaf_mech_password
+#              optional: true
         - name: MONGO_BASEURL
           value: {{ .Values.one_click.mongo.ip | quote }}
         #   {{ if or (eq .Values.env "prod") (eq .Values.env "prod-dr")}}

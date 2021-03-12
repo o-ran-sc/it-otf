@@ -2,12 +2,12 @@ appName: otf-frontend
 version: 0.0.4-SNAPSHOT
 #pullSecret: ""
 image: otf-frontend
-namespace: 
+#namespace:
 nodePort: 32524
 replicas:
-  dev: 2
+  dev: 1
   st: 1
-  prod: 2
+  prod: 1
 env: dev
 AUTHENTICATION_SECRET: ""
 serviceApi:
@@ -68,3 +68,5 @@ one_click:
     ip: 10.0.51.84:27017
     username: "!"
     password: "!"
+    mechId: "!"
+    mechIdPassword: "!"

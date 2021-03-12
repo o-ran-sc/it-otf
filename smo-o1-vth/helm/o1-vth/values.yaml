@@ -11,8 +11,8 @@ sharedCert: otf-cert-secret-builder
 pvc:
   dev: org-oran-otf-dev-logs-pv
   prod: org-oran-otf-prod-logs-pv
-HTTP: "[Your HTTP PROXY HERE]"
-HTTPS: "[Your HTTPS PROXY HERE]"
+HTTP: "Your HTTP PROXY HERE"
+HTTPS: "Your HTTPS PROXY HERE"
 BASE_URL: "base url for health check"
 credentials:
   username: "!"

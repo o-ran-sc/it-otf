@@ -1,9 +1,9 @@
 appName: otf-camunda
 version: 0.0.1-SNAPSHOT
 image: otf-camunda:0.0.1-SNAPSHOT
-namespace: org.oran.otf
+#namespace: org.oran.otf
 nodePort: 31313
-replicas: 2
+replicas: 1
 terminationGracePeriodSeconds: 360
 env: dev
 

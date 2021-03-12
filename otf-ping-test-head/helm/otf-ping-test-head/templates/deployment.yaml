@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.appName}}
@@ -32,15 +32,15 @@ spec:
       {{ end }}
       serviceAccount: default
       volumes:
-      - name: {{ .Values.appName}}-cert-volume
-        secret:
-          secretName: {{.Values.sharedCert}}
-          optional: true
-          items:
-          - key: PEM_CERT
-            path: otf.pem
-          - key: PEM_KEY
-            path: privateKey.pem
+#      - name: {{ .Values.appName}}-cert-volume
+#        secret:
+#          secretName: {{.Values.sharedCert}}
+#          optional: true
+#          items:
+#          - key: PEM_CERT
+#            path: otf.pem
+#          - key: PEM_KEY
+#            path: privateKey.pem
       {{ if or (eq .Values.env "st") (eq .Values.env "prod-dr")}}
       {{else}}
       - name: logging-pvc
@@ -85,8 +85,8 @@ spec:
         - name: APP_VERSION
           value: {{.Values.version}}
         volumeMounts:
-        - name: {{.Values.appName}}-cert-volume
-          mountPath: /opt/cert
+#        - name: {{.Values.appName}}-cert-volume
+#          mountPath: /opt/cert
         {{ if or (eq .Values.env "st") (eq .Values.env "prod-dr")}}
         {{else}}
         - name: logging-pvc
