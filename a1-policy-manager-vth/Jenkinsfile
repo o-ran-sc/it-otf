@@ -36,8 +36,8 @@ properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
 
       ARTIFACT_ID="a1-policy-manager-vth";
       VERSION="0.0.1-SNAPSHOT";
-      NAMESPACE="com.att.ecomp.otf" //TODO change back to org-otf-oran when done testing
-        DOCKER_REGISTRY="dockercentral.it.att.com:5100"
+      NAMESPACE="org-otf-oran"
+        DOCKER_REGISTRY="registry.hub.docker.io"
 
         if( ENV.equalsIgnoreCase("dev") ){
           IMAGE_NAME=DOCKER_REGISTRY + "/" + NAMESPACE + ".dev" + "/" + ARTIFACT_ID +  ":" + VERSION

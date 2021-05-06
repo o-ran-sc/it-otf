@@ -35,8 +35,8 @@ node("docker"){
 
 	ARTIFACT_ID="ric-test-head";
 	VERSION="Camile.2.0";
-	NAMESPACE="com.att.ecomp.otf"
-	DOCKER_REGISTRY="dockercentral.it.att.com:5100"
+	NAMESPACE="org-otf-oran"
+	DOCKER_REGISTRY="registry.hub.docker.io"
 
   if( ENV.equalsIgnoreCase("dev") ){
     IMAGE_NAME=DOCKER_REGISTRY + "/" + NAMESPACE + ".dev" + "/" + ARTIFACT_ID +  ":" + VERSION

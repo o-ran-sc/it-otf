@@ -1,7 +1,7 @@
 appName: otf-service-api
 version: 0.0.1-SNAPSHOT
 #pullSecret: ""
-#image: otf-service-api:0.0.1-SNAPSHOT
+#image:
 #namespace: org-oran-otf
 nodePort: 32303
 replicas:
@@ -13,7 +13,6 @@ env: dev
 otf:
   mongo:
     dev:
-      #host: zlt17213.vci.att.com:27017,zlt17214.vci.att.com:27017,zlt17215.vci.att.com:27017
       #replicaSet: mongoOTF
       #database: otf
 #      host: 10.0.99.11:27017

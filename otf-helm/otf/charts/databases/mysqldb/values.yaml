@@ -21,7 +21,7 @@ testFramework:
 ## Specify password for root user
 ##
 ## Default: random 10 character string
-mysqlRootPassword: otf.123
+mysqlRootPassword: your-mysql-root-password
 mysqlIP: ""
 ## Create a database user
 ##

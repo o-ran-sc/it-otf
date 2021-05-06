@@ -28,13 +28,13 @@ useful helm commands:
   view charts: helm ls -n [namespace]
 
 
-1. This step is to install otf databases: mysql and mongodb
+1. This step is to install otf databases: mysql and mongodb (all commands are done in dir: otf/one-click/one-click-dbs)
 
 	NOTE: each install of dbs requires dbs to not have pvcs set, if they exist delete them on every install. If primary starts failing, uninstall and remove pvc and reinstall
 	a) helm dependency update
-	b) "helm install one-click-dbs -n [namespace] ." (dir: otf-oran/one-click/one-click-dbs)
+	b) "helm install one-click-dbs -n [namespace] ."
 
-2. This step is to install otf-core componenets: otf-service-api,otf-camunda, and otf-frontend
+2. This step is to install otf-core components: otf-service-api,otf-camunda, and otf-frontend (all commands are done in dir: otf/one-click/one-click-dbs)
     NOTE: make sure all the db pods from previous step are running before starting step 2
 
     a) You will need to update the internal URLS on one-click-core/values.yaml. The default values are set to the local cluster IP.
@@ -56,7 +56,7 @@ useful helm commands:
 
     c) helm dependency update
 
-    d) helm install otf-core -n [namespace] . (dir: otf-oran/one-click/one-click-core)
+    d) helm install otf-core -n [namespace] . (dir: otf/one-click/one-click-core)
   
 3.  This step is optional. It will run otf-vths (dir: otf-oran/one-click/one-click-vths) but you can make your own vths and make them accessible(i.e. via HTTP request).
     We recommend making and deploying your own VTHS(micro-services) to fit your own workflows and solutions.
