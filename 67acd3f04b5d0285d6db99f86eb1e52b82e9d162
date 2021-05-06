@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "703b9320_d079095b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000408
+      },
+      "writtenOn": "2021-05-06T15:33:35Z",
+      "side": 1,
+      "message": "Hey Trishan,\n\nCan you take a look at some of my changes. If they are good to go then please merge the changes. Thanks !\n",
+      "revId": "67acd3f04b5d0285d6db99f86eb1e52b82e9d162",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
