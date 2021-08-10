@@ -4,3 +4,4 @@ pyping
 paramiko
 FLASK
 FLASK-CORS
+requests

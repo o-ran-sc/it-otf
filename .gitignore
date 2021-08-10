@@ -10,7 +10,3 @@
 -*.tgz
 -*.lock
 
-otf-helm/otf/values.yaml
-otf-helm/otf/charts/databases/mysqldb/values.yaml
-otf-service-api/helm/otf-service-api/values.yaml
-
