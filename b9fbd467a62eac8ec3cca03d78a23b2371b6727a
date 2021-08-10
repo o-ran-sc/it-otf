@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aea51d69_b5bd149c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001444
+      },
+      "writtenOn": "2021-08-10T15:03:37Z",
+      "side": 1,
+      "message": "Wanted to notify you of re-addition of the values.yamls without the proprietary info",
+      "revId": "b9fbd467a62eac8ec3cca03d78a23b2371b6727a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
